@@ -1,0 +1,5 @@
+# Ignore temporary files
+*.tmp
+*.bak
+# Ignore sync log
+sync_log.txt
