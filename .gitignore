@@ -1,5 +1,6 @@
 # Ignore temporary files
 *.tmp
 *.bak
+*.bat
 # Ignore sync log
 sync_log.txt
