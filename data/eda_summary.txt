@@ -1,0 +1,367 @@
+
+===== 1_CALENDAR =====
+Shape: 1969 rows × 14 cols
+
+🔸 Column Info:
+date            object
+wm_yr_wk         int64
+weekday         object
+wday             int64
+month            int64
+year             int64
+d               object
+event_name_1    object
+event_type_1    object
+event_name_2    object
+event_type_2    object
+snap_CA          int64
+snap_TX          int64
+snap_WI          int64
+dtype: object
+
+🔸 Missing Values:
+date               0
+wm_yr_wk           0
+weekday            0
+wday               0
+month              0
+year               0
+d                  0
+event_name_1    1807
+event_type_1    1807
+event_name_2    1964
+event_type_2    1964
+snap_CA            0
+snap_TX            0
+snap_WI            0
+dtype: int64
+
+🔸 Sample Rows:
+         date  wm_yr_wk   weekday  wday  month  year    d event_name_1 event_type_1 event_name_2 event_type_2  snap_CA  snap_TX  snap_WI
+0  2011-01-29     11101  Saturday     1      1  2011  d_1          NaN          NaN          NaN          NaN        0        0        0
+1  2011-01-30     11101    Sunday     2      1  2011  d_2          NaN          NaN          NaN          NaN        0        0        0
+2  2011-01-31     11101    Monday     3      1  2011  d_3          NaN          NaN          NaN          NaN        0        0        0
+
+🔗 Possible Join Keys: date
+
+
+
+===== 1_SALES_TRAIN_EVALUATION_REDUCED =====
+Shape: 2626 rows × 1947 cols
+
+🔸 Column Info:
+id          object
+item_id     object
+dept_id     object
+cat_id      object
+store_id    object
+             ...  
+d_1937       int64
+d_1938       int64
+d_1939       int64
+d_1940       int64
+d_1941       int64
+Length: 1947, dtype: object
+
+🔸 Missing Values:
+id          0
+item_id     0
+dept_id     0
+cat_id      0
+store_id    0
+           ..
+d_1937      0
+d_1938      0
+d_1939      0
+d_1940      0
+d_1941      0
+Length: 1947, dtype: int64
+
+🔸 Sample Rows:
+                                id          item_id      dept_id     cat_id store_id state_id  d_1  d_2  d_3  d_4  d_5  ...  d_1931  d_1932  d_1933  d_1934  d_1935  d_1936  d_1937  d_1938  d_1939  d_1940  d_1941
+0      FOODS_3_180_CA_1_evaluation      FOODS_3_180      FOODS_3      FOODS     CA_1       CA    0    0    0    0    0  ...       2       0       0       1       0       0       1       0       0       0       0
+1  HOUSEHOLD_2_383_CA_3_evaluation  HOUSEHOLD_2_383  HOUSEHOLD_2  HOUSEHOLD     CA_3       CA    2    0    2    0    2  ...       0       0       0       0       0       0       0       0       0       0       2
+2      FOODS_3_409_CA_3_evaluation      FOODS_3_409      FOODS_3      FOODS     CA_3       CA    0    0    0    0    0  ...       0       0       0       0       0       0       1       0       2       1       0
+
+[3 rows x 1947 columns]
+
+🔗 Possible Join Keys: id, item_id, dept_id, cat_id, store_id, state_id
+
+
+
+===== 1_SALES_TRAIN_VALIDATION_REDUCED =====
+Shape: 2664 rows × 1919 cols
+
+🔸 Column Info:
+id          object
+item_id     object
+dept_id     object
+cat_id      object
+store_id    object
+             ...  
+d_1909       int64
+d_1910       int64
+d_1911       int64
+d_1912       int64
+d_1913       int64
+Length: 1919, dtype: object
+
+🔸 Missing Values:
+id          0
+item_id     0
+dept_id     0
+cat_id      0
+store_id    0
+           ..
+d_1909      0
+d_1910      0
+d_1911      0
+d_1912      0
+d_1913      0
+Length: 1919, dtype: int64
+
+🔸 Sample Rows:
+                                id          item_id      dept_id     cat_id store_id state_id  d_1  d_2  d_3  d_4  d_5  ...  d_1903  d_1904  d_1905  d_1906  d_1907  d_1908  d_1909  d_1910  d_1911  d_1912  d_1913
+0      FOODS_3_180_CA_1_validation      FOODS_3_180      FOODS_3      FOODS     CA_1       CA    0    0    0    0    0  ...       1       0       0       1       2       0       0       0       0       1       0
+1  HOUSEHOLD_2_383_CA_3_validation  HOUSEHOLD_2_383  HOUSEHOLD_2  HOUSEHOLD     CA_3       CA    2    0    2    0    2  ...       1       0       2       0       1       0       0       0       0       0       1
+2      FOODS_3_409_CA_3_validation      FOODS_3_409      FOODS_3      FOODS     CA_3       CA    0    0    0    0    0  ...       0       0       0       1       0       0       1       1       2       0       0
+
+[3 rows x 1919 columns]
+
+🔗 Possible Join Keys: id, item_id, dept_id, cat_id, store_id, state_id
+
+
+
+===== 1_SAMPLE_SUBMISSION =====
+Shape: 60980 rows × 29 cols
+
+🔸 Column Info:
+id     object
+F1      int64
+F2      int64
+F3      int64
+F4      int64
+F5      int64
+F6      int64
+F7      int64
+F8      int64
+F9      int64
+F10     int64
+F11     int64
+F12     int64
+F13     int64
+F14     int64
+F15     int64
+F16     int64
+F17     int64
+F18     int64
+F19     int64
+F20     int64
+F21     int64
+F22     int64
+F23     int64
+F24     int64
+F25     int64
+F26     int64
+F27     int64
+F28     int64
+dtype: object
+
+🔸 Missing Values:
+id     0
+F1     0
+F2     0
+F3     0
+F4     0
+F5     0
+F6     0
+F7     0
+F8     0
+F9     0
+F10    0
+F11    0
+F12    0
+F13    0
+F14    0
+F15    0
+F16    0
+F17    0
+F18    0
+F19    0
+F20    0
+F21    0
+F22    0
+F23    0
+F24    0
+F25    0
+F26    0
+F27    0
+F28    0
+dtype: int64
+
+🔸 Sample Rows:
+                              id  F1  F2  F3  F4  F5  F6  F7  F8  F9  F10  F11  F12  F13  F14  F15  F16  F17  F18  F19  F20  F21  F22  F23  F24  F25  F26  F27  F28
+0  HOBBIES_1_001_CA_1_validation   0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+1  HOBBIES_1_002_CA_1_validation   0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+2  HOBBIES_1_003_CA_1_validation   0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+
+🔗 Possible Join Keys: id
+
+
+
+===== 1_SELL_PRICES_REDUCED =====
+Shape: 352684 rows × 4 cols
+
+🔸 Column Info:
+store_id       object
+item_id        object
+wm_yr_wk        int64
+sell_price    float64
+dtype: object
+
+🔸 Missing Values:
+store_id      0
+item_id       0
+wm_yr_wk      0
+sell_price    0
+dtype: int64
+
+🔸 Sample Rows:
+  store_id          item_id  wm_yr_wk  sell_price
+0     TX_3      FOODS_3_295     11448        0.80
+1     TX_1  HOUSEHOLD_1_322     11409        2.87
+2     TX_2      FOODS_3_109     11351        1.00
+
+🔗 Possible Join Keys: store_id, item_id
+
+
+
+===== 2_RETAIL_PRICE =====
+Shape: 676 rows × 30 cols
+
+🔸 Column Info:
+product_id                     object
+product_category_name          object
+month_year                     object
+qty                             int64
+total_price                   float64
+freight_price                 float64
+unit_price                    float64
+product_name_lenght             int64
+product_description_lenght      int64
+product_photos_qty              int64
+product_weight_g                int64
+product_score                 float64
+customers                       int64
+weekday                         int64
+weekend                         int64
+holiday                         int64
+month                           int64
+year                            int64
+s                             float64
+volume                          int64
+comp_1                        float64
+ps1                           float64
+fp1                           float64
+comp_2                        float64
+ps2                           float64
+fp2                           float64
+comp_3                        float64
+ps3                           float64
+fp3                           float64
+lag_price                     float64
+dtype: object
+
+🔸 Missing Values:
+product_id                    0
+product_category_name         0
+month_year                    0
+qty                           0
+total_price                   0
+freight_price                 0
+unit_price                    0
+product_name_lenght           0
+product_description_lenght    0
+product_photos_qty            0
+product_weight_g              0
+product_score                 0
+customers                     0
+weekday                       0
+weekend                       0
+holiday                       0
+month                         0
+year                          0
+s                             0
+volume                        0
+comp_1                        0
+ps1                           0
+fp1                           0
+comp_2                        0
+ps2                           0
+fp2                           0
+comp_3                        0
+ps3                           0
+fp3                           0
+lag_price                     0
+dtype: int64
+
+🔸 Sample Rows:
+  product_id product_category_name  month_year  qty  total_price  freight_price  unit_price  product_name_lenght  ...        fp1  comp_2  ps2        fp2  comp_3  ps3        fp3  lag_price
+0       bed1        bed_bath_table  01-05-2017    1        45.95      15.100000       45.95                   39  ...  15.011897   215.0  4.4   8.760000   45.95  4.0  15.100000      45.90
+1       bed1        bed_bath_table  01-06-2017    3       137.85      12.933333       45.95                   39  ...  14.769216   209.0  4.4  21.322000   45.95  4.0  12.933333      45.95
+2       bed1        bed_bath_table  01-07-2017    6       275.70      14.840000       45.95                   39  ...  13.993833   205.0  4.4  22.195932   45.95  4.0  14.840000      45.95
+
+[3 rows x 30 columns]
+
+🔗 Possible Join Keys: product_id, holiday
+
+
+
+===== SALES_FINAL_REDUCED =====
+Shape: 50000 rows × 14 cols
+
+🔸 Column Info:
+Region                                object
+ Country                              object
+ Item Type                            object
+ Sales Channel                        object
+ Order Priority                       object
+ Order Date                           object
+ Order ID                              int64
+ Ship Date                            object
+ Units Sold                            int64
+ Unit Price                          float64
+ Unit Cost                           float64
+ Total Revenue                       float64
+ Total Cost                          float64
+ Total Profit                        float64
+dtype: object
+
+🔸 Missing Values:
+Region                               0
+ Country                             0
+ Item Type                           0
+ Sales Channel                       0
+ Order Priority                      0
+ Order Date                          0
+ Order ID                            0
+ Ship Date                           0
+ Units Sold                          0
+ Unit Price                          0
+ Unit Cost                           0
+ Total Revenue                       0
+ Total Cost                          0
+ Total Profit                        0
+dtype: int64
+
+🔸 Sample Rows:
+   Region                              Country                            Item Type         Sales Channel   Order Priority  ...  Unit Price   Unit Cost  Total Revenue   Total Cost   Total Profit
+0  Asia                                Nepal                              Meat              Offline         L               ...      421.89      364.69      686836.92    593715.32       93121.60
+1  Middle East and North Africa        Saudi Arabia                       Meat              Offline         M               ...      421.89      364.69     3960703.32   3423709.72      536993.60
+2  Sub-Saharan Africa                  Guinea                             Household         Offline         C               ...      668.27      502.54     6336536.14   4765084.28     1571451.86
+
+[3 rows x 14 columns]
+
+🔗 Possible Join Keys:  Order Date,  Order ID ,  Ship Date 
+
+

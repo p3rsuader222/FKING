@@ -1,0 +1,213 @@
+% Setting up document class and essential packages
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titling}
+\usepackage{xcolor}
+\usepackage{sectsty}
+\sectionfont{\large\bfseries}
+\subsectionfont{\normalsize\bfseries}
+
+% Defining title and starting document
+\title{Step-by-Step Guide to Connect a New Project to GitHub with VS Code}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+% Introducing the guide
+This guide explains how to connect a new project on your PC to a GitHub repository using Visual Studio Code (VS Code). It assumes your GitHub username is \texttt{p3rsuader222}, your project folder is \texttt{D:\textbackslash relocationasonedrive\textbackslash LEARNCODE\textbackslash NEWPROJECT}, and you want to handle large CSV files and sync changes easily. The process includes creating a repository, initializing Git, setting up Git LFS, and syncing with a batch file or VS Code.
+
+% Step 1: Creating local project folder
+\section{Step 1: Create Local Project Folder}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Create Folder}: In File Explorer, go to \texttt{D:\textbackslash relocationasonedrive\textbackslash LEARNCODE}, create a folder named \texttt{NEWPROJECT}, and copy project files (e.g., \texttt{data/raw/m5/1\_calendar.csv}) into it.
+    \item \textbf{Verify Files}: In PowerShell, run:
+    \begin{verbatim}
+    dir D:\relocationasonedrive\LEARNCODE\NEWPROJECT -Recurse
+    \end{verbatim}
+    Ensure CSVs and other files are listed.
+    \item \textbf{Check File Sizes}: Run:
+    \begin{verbatim}
+    dir D:\relocationasonedrive\LEARNCODE\NEWPROJECT\data\*.csv | Select-Object Name, Length
+    \end{verbatim}
+    Note if any file exceeds 100 MB for Git LFS.
+\end{enumerate}
+
+% Step 2: Creating GitHub repository
+\section{Step 2: Create GitHub Repository}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Log in}: Go to \texttt{https://github.com/}, sign in as \texttt{p3rsuader222}.
+    \item \textbf{Create Repository}: Click \texttt{+} > \texttt{New repository}. Set name to \texttt{NEWPROJECT}, choose \texttt{Public} or \texttt{Private}, \textbf{uncheck} \texttt{README}, \texttt{.gitignore}, and license. Click \texttt{Create repository}.
+    \item \textbf{Copy URL}: On \texttt{https://github.com/p3rsuader222/NEWPROJECT}, click \texttt{Code}, copy \texttt{https://github.com/p3rsuader222/NEWPROJECT.git}.
+\end{enumerate}
+
+% Step 3: Initializing Git repository
+\section{Step 3: Initialize Git Repository}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Open PowerShell}: Press \texttt{Win + R}, type \texttt{powershell}, press \texttt{Enter}.
+    \item \textbf{Navigate}: Run:
+    \begin{verbatim}
+    cd D:\relocationasonedrive\LEARNCODE\NEWPROJECT
+    \end{verbatim}
+    \item \textbf{Initialize Git}: Run \texttt{git init}.
+    \item \textbf{Configure Git}: Run:
+    \begin{verbatim}
+    git config --global user.name "p3rsuader222"
+    git config --global user.email "dovydas.dervinis@gmail.com"
+    git config --global core.autocrlf false
+    git config --global credential.helper wincred
+    \end{verbatim}
+\end{enumerate}
+
+% Step 4: Setting up Git LFS and .gitattributes
+\section{Step 4: Set Up Git LFS and \texttt{.gitattributes}}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Install Git LFS}: Run \texttt{git lfs install}. If not installed, download from \texttt{https://git-lfs.github.com/}.
+    \item \textbf{Create \texttt{.gitattributes}}: In VS Code (\texttt{File > Open Folder > D:\textbackslash relocationasonedrive\textbackslash LEARNCODE\textbackslash NEWPROJECT}), create \texttt{.gitattributes}, add:
+    \begin{verbatim}
+    *.csv -text
+    *.md text eol=lf
+    *.txt text eol=lf
+    data/*.csv filter=lfs diff=lfs merge=lfs -text
+    \end{verbatim}
+    Save (\texttt{Ctrl+S}).
+    \item \textbf{Track CSVs}: Run:
+    \begin{verbatim}
+    git lfs track "data/*.csv"
+    \end{verbatim}
+\end{enumerate}
+
+% Step 5: Creating .gitignore
+\section{Step 5: Create \texttt{.gitignore}}
+\begin{enumerate}[label=\arabic*.]
+    \item In VS Code, create \texttt{.gitignore}, add:
+    \begin{verbatim}
+    *.tmp
+    *.bak
+    sync_repo.bat
+    sync_log.txt
+    \end{verbatim}
+    Save.
+\end{enumerate}
+
+% Step 6: Staging and committing files
+\section{Step 6: Stage and Commit Files}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Stage}: In VS Code, go to Source Control (\texttt{Ctrl+Shift+G}), click \texttt{Stage All Changes}. Or run:
+    \begin{verbatim}
+    git add .
+    \end{verbatim}
+    \item \textbf{Verify}: Run \texttt{git status} to check files (e.g., \texttt{data/raw/m5/1_calendar.csv}).
+    \item \textbf{Commit}: In VS Code, enter ``Initial commit with all project files'', click checkmark. Or run:
+    \begin{verbatim}
+    git commit -m "Initial commit with all project files"
+    \end{verbatim}
+\end{enumerate}
+
+% Step 7: Connecting to GitHub and pushing
+\section{Step 7: Connect to GitHub and Push}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Add Remote}: Run:
+    \begin{verbatim}
+    git remote add origin https://github.com/p3rsuader222/NEWPROJECT.git
+    \end{verbatim}
+    \item \textbf{Set Branch}: Run \texttt{git branch -m main}.
+    \item \textbf{Push}: In VS Code, click \texttt{...} > \texttt{Push}. Or run:
+    \begin{verbatim}
+    git push -u origin main
+    \end{verbatim}
+    Enter username (\texttt{p3rsuader222}) and password/PAT if prompted.
+\end{enumerate}
+
+% Step 8: Creating batch file
+\section{Step 8: Create Batch File for Syncing}
+\begin{enumerate}[label=\arabic*.]
+    \item In VS Code, create \texttt{sync\_repo.bat} in \texttt{D:\textbackslash relocationasonedrive\textbackslash LEARNCODE\textbackslash NEWPROJECT}, add:
+    \begin{verbatim}
+    @echo off
+    setlocal EnableDelayedExpansion
+    set REPO_PATH=D:\relocationasonedrive\LEARNCODE\NEWPROJECT
+    set LOG_FILE=%REPO_PATH%\sync_log.txt
+    echo Sync started at %DATE% %TIME% > "%LOG_FILE%"
+    cd /d "%REPO_PATH%" || (
+        echo ERROR: Failed to navigate to %REPO_PATH% >> "%LOG_FILE%"
+        echo ERROR: Failed to navigate to %REPO_PATH%
+        pause
+        exit /b 1
+    )
+    git lfs install >> "%LOG_FILE%" 2>&1
+    git pull origin main >> "%LOG_FILE%" 2>&1 || (
+        echo ERROR: Failed to pull changes >> "%LOG_FILE%"
+        echo ERROR: Failed to pull changes
+        pause
+        exit /b 1
+    )
+    git status >> "%LOG_FILE%" 2>&1
+    git add . >> "%LOG_FILE%" 2>&1
+    git commit -m "Auto-sync changes" >> "%LOG_FILE%" 2>&1 || (
+        echo No changes to commit >> "%LOG_FILE%"
+        echo No changes to commit
+    )
+    git push origin main >> "%LOG_FILE%" 2>&1 || (
+        echo ERROR: Failed to push to GitHub >> "%LOG_FILE%"
+        echo ERROR: Failed to push to GitHub
+        pause
+        exit /b 1
+    )
+    git status >> "%LOG_FILE%" 2>&1
+    echo Sync completed successfully at %DATE% %TIME% >> "%LOG_FILE%"
+    echo Sync completed successfully! Check %LOG_FILE% for details.
+    echo Files updated at https://github.com/p3rsuader222/NEWPROJECT
+    pause
+    \end{verbatim}
+    Save (set ``Save as type'' to ``All Files'').
+    \item \textbf{Test}: Run:
+    \begin{verbatim}
+    cd D:\relocationasonedrive\LEARNCODE\NEWPROJECT
+    .\sync_repo.bat
+    \end{verbatim}
+\end{enumerate}
+
+% Step 9: Syncing changes
+\section{Step 9: Sync Changes}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{PC to GitHub}: Edit a file in VS Code, save. Go to Source Control, stage (\texttt{+}), commit (``Updated files''), push (\texttt{...} > \texttt{Push}). Or run \texttt{sync\_repo.bat}.
+    \item \textbf{GitHub to PC}: Edit a file on \texttt{https://github.com/p3rsuader222/NEWPROJECT}. Run \texttt{sync\_repo.bat} or:
+    \begin{verbatim}
+    git pull origin main
+    \end{verbatim}
+\end{enumerate}
+
+% Step 10: Verifying setup
+\section{Step 10: Verify}
+\begin{enumerate}[label=\arabic*.]
+    \item Check \texttt{https://github.com/p3rsuader222/NEWPROJECT} for files (e.g., \texttt{data/raw/m5/1\_calendar.csv}) and commits.
+    \item View \texttt{sync\_log.txt}:
+    \begin{verbatim}
+    Get-Content D:\relocationasonedrive\LEARNCODE\NEWPROJECT\sync_log.txt
+    \end{verbatim}
+\end{enumerate}
+
+% Troubleshooting common issues
+\section{Troubleshooting}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Files Missing}: Run \texttt{git status}, check \texttt{.gitignore}.
+    \item \textbf{Large Files}: If \texttt{git push} fails with ``file exceeds 100 MB'', verify Git LFS and \texttt{.gitattributes}.
+    \item \textbf{OneDrive}: If \texttt{D:\textbackslash relocationasonedrive} is in OneDrive, check:
+    \begin{verbatim}
+    dir C:\Users\dovyd\OneDrive\relocationasonedrive
+    \end{verbatim}
+    Update \texttt{sync\_repo.bat} with \texttt{set REPO\_PATH=C:\textbackslash Users\textbackslash dovyd\textbackslash OneDrive\textbackslash relocationasonedrive\textbackslash LEARNCODE\textbackslash NEWPROJECT} if needed, or move folder:
+    \begin{verbatim}
+    Move-Item -Path D:\relocationasonedrive\LEARNCODE\NEWPROJECT -Destination D:\LEARNCODE
+    \end{verbatim}
+\end{enumerate}
+
+% Ending document
+\end{document}
